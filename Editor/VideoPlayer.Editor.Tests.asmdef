@@ -1,0 +1,18 @@
+{
+    "name": "VideoPlayer.Editor.Tests",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e6421c049fa31eb4581b149e05a7068c"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

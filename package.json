@@ -1,0 +1,11 @@
+{
+  "name": "com.naianerosa.videoplayer.tests",
+  "version": "1.0.0",
+  "displayName": "Video Player Tests",
+  "description": "Tests for Editor Video Player.",
+  "unity": "6.1",
+  "author": {
+    "name": "Naiane Rosa",
+    "email": "bondezanrosa@gmail.com"
+  }
+}
