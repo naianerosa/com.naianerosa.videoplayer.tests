@@ -25,7 +25,7 @@ public class EditorVideoPlayerHandlerTest
         
         videoHandler = new EditorVideoPlayerHandler(videoDisplay);
 
-        videoPlayerComponent = GameObject.Find(EditorVideoPlayerHandler.VideoPlayerName)?.GetComponent<VideoPlayer>();
+        videoPlayerComponent = GameObject.Find(EditorVideoPlayerConstants.VideoPlayerName)?.GetComponent<VideoPlayer>();
     }
 
     [TearDown]
@@ -41,7 +41,7 @@ public class EditorVideoPlayerHandlerTest
     [Test]
     public void Constructor_CreatesVideoPlayerWithCorrectSetup()
     {
-        Assert.That(videoPlayerComponent, Is.Not.Null, $"{EditorVideoPlayerHandler.VideoPlayerName} game object not found.");
+        Assert.That(videoPlayerComponent, Is.Not.Null, $"{EditorVideoPlayerConstants.VideoPlayerName} game object not found.");
         Assert.That(videoPlayerComponent.renderMode, Is.EqualTo(VideoRenderMode.RenderTexture));
         Assert.That(videoPlayerComponent.audioOutputMode, Is.EqualTo(VideoAudioOutputMode.AudioSource));
         Assert.That(videoPlayerComponent.gameObject.GetComponent<AudioSource>(), Is.Not.Null, "Audio source not found on video player.");
@@ -110,7 +110,7 @@ public class EditorVideoPlayerHandlerTest
     public void Destroy_CleansUpResources()
     {
         videoHandler.Destroy();
-        var videoPlayer = GameObject.Find(EditorVideoPlayerHandler.VideoPlayerName);
+        var videoPlayer = GameObject.Find(EditorVideoPlayerConstants.VideoPlayerName);
         Assert.That(videoPlayer, Is.Null);
     }
 
