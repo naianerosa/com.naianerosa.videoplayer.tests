@@ -15,7 +15,7 @@ public class EditorVideoPlayerElementTests
     public void Setup()
     {
         // Setup root element
-        var template = EditorGUIUtility.Load("Packages/com.naianerosa.videoplayer/Editor/EditorVideoPlayerElement.uxml") as VisualTreeAsset;
+        var template = EditorGUIUtility.Load("Packages/com.naianerosa.videoplayer/Editor/EditorVideoPlayerElement/EditorVideoPlayerElement.uxml") as VisualTreeAsset;
 
         var root = new VisualElement();
 

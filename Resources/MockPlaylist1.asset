@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc9aa9815a0b3f148becf300da4590d0, type: 3}
   m_Name: MockPlaylist1
   m_EditorClassIdentifier: 
-  Title: 
-  Videos: []
+  Title: Mock Playlist 1
+  Videos:
+  - {fileID: 32900000, guid: f1ef043c26505bb4a8469c6d069610b4, type: 3}
+  - {fileID: 32900000, guid: 9109b9b0257fe04429599de2f2fcaa40, type: 3}
