@@ -84,6 +84,7 @@ public class EditorVideoPlayerElementTests
         videoPlayerElement.LoadPlayList(null);
 
         Assert.IsNotNull(videoPlayerElement.ViewModel, "ViewModel should not be null for an empty playlist.");
+        Assert.IsNotNull(videoPlayerElement.ViewModel.ActiveVideo, "ActiveVideo should not be null for an empty playlist.");
         Assert.AreEqual(DisplayStyle.None, videoPlayerElement.ViewModel.NoVideosLabelVisibility, "No videos label should not be visible");
         Assert.AreEqual(DisplayStyle.None, videoPlayerElement.ViewModel.VideoContainerVisibility, "Videos container should not be visible");
     }
