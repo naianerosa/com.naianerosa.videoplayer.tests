@@ -156,6 +156,16 @@ public class EditorVideoPlayerElementTests
         AssertButtonStates(mainButtonPlaying: false, indexOfPlayingVideo: -1);
     }
 
+    [Test]
+    public void UpdateActiveTime_SetsCorrectTime()
+    {
+        videoPlayerElement.LoadPlayList(playlist1);
+        var activeVideo = videoPlayerElement.ViewModel.ActiveVideo;
+        float newTime = 10f;
+        videoPlayerElement.UpdateActiveVideoTime(newTime);
+        Assert.AreEqual(newTime, videoPlayerElement.ViewModel.ActiveVideo.VideoClipCurrentTime);
+    }
+
     private void AssertButtonStates(bool mainButtonPlaying, int indexOfPlayingVideo)
     {
         var playlist = videoPlayerElement.ViewModel;
