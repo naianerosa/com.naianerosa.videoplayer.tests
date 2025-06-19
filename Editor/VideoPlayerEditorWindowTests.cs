@@ -1,22 +1,24 @@
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.Video;
 
 public class VideoPlayerEditorWindowTests
 {
     private VideoPlayerEditorWindow window;
+    private VideoPlaylist mockPlaylist1;
+    private VideoPlaylist mockPlaylist2;
 
     [SetUp]
     public void Setup()
     {
         VideoPlayerEditorWindow.NewWindow();
         window = EditorWindow.GetWindow<VideoPlayerEditorWindow>();
+
+        mockPlaylist1 = AssetDatabase.LoadAssetAtPath<VideoPlaylist>("Packages/com.naianerosa.videoplayer.tests/Resources/MockPlaylist1.asset");
+        mockPlaylist2 = AssetDatabase.LoadAssetAtPath<VideoPlaylist>("Packages/com.naianerosa.videoplayer.tests/Resources/MockPlaylist2.asset");
+
     }
 
     [TearDown]
@@ -31,10 +33,9 @@ public class VideoPlayerEditorWindowTests
     [Test]
     public void NewWindow_CreatesWindowWithCorrectInitialState()
     {
-
         Assert.That(window.titleContent.text, Is.EqualTo("Video Player"));
-        Assert.That(window.viewModel, Is.Not.Null);
-        Assert.AreEqual(DisplayStyle.Flex, window.viewModel.NoPlayListSelectedContainer);
+        Assert.That(window.ViewModel, Is.Not.Null);
+        Assert.AreEqual(DisplayStyle.Flex, window.ViewModel.NoPlayListSelectedContainer);
     }
 
     [Test]
@@ -64,28 +65,21 @@ public class VideoPlayerEditorWindowTests
         var playlistPicker = root.Q<ObjectField>("playlist_picker");
         var videoPlayerElement = root.Q<EditorVideoPlayerElement>();
 
-        //Sets the first playlist to the picker
-        var mockPlaylist1 = ScriptableObject.CreateInstance<VideoPlaylist>();
-        mockPlaylist1.Title = "Mock Playlist 1";
+        //Sets the first playlist to the picker        
         playlistPicker.value = mockPlaylist1;
 
         // Verify root element has data source set and title matches
-        Assert.That(window.editorVideoPlayerElement.dataSource, Is.Not.Null);
+        Assert.That(window.EditorVideoPlayerElement.dataSource, Is.Not.Null);
         Assert.AreEqual(mockPlaylist1.Title, ((EditorVideoPlayerElementVM)(videoPlayerElement.dataSource)).Title);
-        Assert.AreEqual(DisplayStyle.None, window.viewModel.NoPlayListSelectedContainer);
+        Assert.AreEqual(DisplayStyle.None, window.ViewModel.NoPlayListSelectedContainer);
 
-        //Sets the second playlist to the picker
-        var mockPlaylist2 = ScriptableObject.CreateInstance<VideoPlaylist>();
-        mockPlaylist2.Title = "Mock Playlist 2";
+        //Sets the second playlist to the picker       
         playlistPicker.value = mockPlaylist2;
 
         // Verify root element has data source set and title matches    
-        Assert.That(window.editorVideoPlayerElement.dataSource, Is.Not.Null);
+        Assert.That(window.EditorVideoPlayerElement.dataSource, Is.Not.Null);
         Assert.AreEqual(mockPlaylist2.Title, ((EditorVideoPlayerElementVM)(videoPlayerElement.dataSource)).Title);
-        Assert.AreEqual(DisplayStyle.None, window.viewModel.NoPlayListSelectedContainer);
-
-        UnityEngine.Object.DestroyImmediate(mockPlaylist1);
-        UnityEngine.Object.DestroyImmediate(mockPlaylist2);
+        Assert.AreEqual(DisplayStyle.None, window.ViewModel.NoPlayListSelectedContainer);
     }
 
 
@@ -96,19 +90,17 @@ public class VideoPlayerEditorWindowTests
         var root = window.rootVisualElement;
         var playlistPicker = root.Q<ObjectField>("playlist_picker");
 
-        //Sets a playlist to the picker
-        var mockPlaylist1 = ScriptableObject.CreateInstance<VideoPlaylist>();
-        mockPlaylist1.Title = "Mock Playlist 1";
+        //Sets a playlist to the picker        
         playlistPicker.value = mockPlaylist1;
-        Assert.AreEqual(DisplayStyle.None, window.viewModel.NoPlayListSelectedContainer);
+        Assert.AreEqual(DisplayStyle.None, window.ViewModel.NoPlayListSelectedContainer);
 
 
         //Clear the playlist on the picker        
         playlistPicker.value = null;
 
         // Verify view model is set and is on correct state
-        Assert.That(window.viewModel, Is.Not.Null);
-        Assert.AreEqual(DisplayStyle.Flex, window.viewModel.NoPlayListSelectedContainer);
+        Assert.That(window.ViewModel, Is.Not.Null);
+        Assert.AreEqual(DisplayStyle.Flex, window.ViewModel.NoPlayListSelectedContainer);
 
     }
 }

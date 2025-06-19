@@ -40,26 +40,26 @@ public class EditorVideoPlayerElementTests
         videoPlayerElement.LoadPlayList(playlist1);
 
         //Check items and buttons states
-        Assert.IsNotNull(videoPlayerElement.viewModel);
-        Assert.That(videoPlayerElement.viewModel.Videos.Count, Is.EqualTo(playlist1.Videos.Length));
+        Assert.IsNotNull(videoPlayerElement.ViewModel);
+        Assert.That(videoPlayerElement.ViewModel.Videos.Count, Is.EqualTo(playlist1.Videos.Length));
         AssertButtonStates(mainButtonPlaying: true, indexOfPlayingVideo: 0);
 
         //Check containers visibility
-        Assert.AreEqual(DisplayStyle.Flex, videoPlayerElement.viewModel.VideoContainerVisibility, "Videos container should be visible");
-        Assert.AreEqual(DisplayStyle.None, videoPlayerElement.viewModel.NoVideosLabelVisibility, "No videos label should NOT be visible");
+        Assert.AreEqual(DisplayStyle.Flex, videoPlayerElement.ViewModel.VideoContainerVisibility, "Videos container should be visible");
+        Assert.AreEqual(DisplayStyle.None, videoPlayerElement.ViewModel.NoVideosLabelVisibility, "No videos label should NOT be visible");
 
         //Change Playlist
        
         videoPlayerElement.LoadPlayList(playlist2);
 
         //Check items and buttons states
-        Assert.IsNotNull(videoPlayerElement.viewModel);
-        Assert.That(videoPlayerElement.viewModel.Videos.Count, Is.EqualTo(playlist2.Videos.Length));
+        Assert.IsNotNull(videoPlayerElement.ViewModel);
+        Assert.That(videoPlayerElement.ViewModel.Videos.Count, Is.EqualTo(playlist2.Videos.Length));
         AssertButtonStates(mainButtonPlaying: true, indexOfPlayingVideo: 0);
 
         //Check containers visibility
-        Assert.AreEqual(DisplayStyle.Flex, videoPlayerElement.viewModel.VideoContainerVisibility, "Videos container should be visible");
-        Assert.AreEqual(DisplayStyle.None, videoPlayerElement.viewModel.NoVideosLabelVisibility, "No videos label should NOT be visible");
+        Assert.AreEqual(DisplayStyle.Flex, videoPlayerElement.ViewModel.VideoContainerVisibility, "Videos container should be visible");
+        Assert.AreEqual(DisplayStyle.None, videoPlayerElement.ViewModel.NoVideosLabelVisibility, "No videos label should NOT be visible");
 
     }
 
@@ -70,9 +70,9 @@ public class EditorVideoPlayerElementTests
 
         videoPlayerElement.LoadPlayList(emptyPlaylist);
 
-        Assert.IsNotNull(videoPlayerElement.viewModel, "ViewModel should not be null for an empty playlist.");
-        Assert.AreEqual(DisplayStyle.Flex, videoPlayerElement.viewModel.NoVideosLabelVisibility, "No videos label should be visible");
-        Assert.AreEqual(DisplayStyle.None, videoPlayerElement.viewModel.VideoContainerVisibility, "Videos container should not be visible");
+        Assert.IsNotNull(videoPlayerElement.ViewModel, "ViewModel should not be null for an empty playlist.");
+        Assert.AreEqual(DisplayStyle.Flex, videoPlayerElement.ViewModel.NoVideosLabelVisibility, "No videos label should be visible");
+        Assert.AreEqual(DisplayStyle.None, videoPlayerElement.ViewModel.VideoContainerVisibility, "Videos container should not be visible");
 
         Object.DestroyImmediate(emptyPlaylist);
     }
@@ -83,9 +83,9 @@ public class EditorVideoPlayerElementTests
     {
         videoPlayerElement.LoadPlayList(null);
 
-        Assert.IsNotNull(videoPlayerElement.viewModel, "ViewModel should not be null for an empty playlist.");
-        Assert.AreEqual(DisplayStyle.None, videoPlayerElement.viewModel.NoVideosLabelVisibility, "No videos label should not be visible");
-        Assert.AreEqual(DisplayStyle.None, videoPlayerElement.viewModel.VideoContainerVisibility, "Videos container should not be visible");
+        Assert.IsNotNull(videoPlayerElement.ViewModel, "ViewModel should not be null for an empty playlist.");
+        Assert.AreEqual(DisplayStyle.None, videoPlayerElement.ViewModel.NoVideosLabelVisibility, "No videos label should not be visible");
+        Assert.AreEqual(DisplayStyle.None, videoPlayerElement.ViewModel.VideoContainerVisibility, "Videos container should not be visible");
     }
 
     [Test]
@@ -158,7 +158,7 @@ public class EditorVideoPlayerElementTests
 
     private void AssertButtonStates(bool mainButtonPlaying, int indexOfPlayingVideo)
     {
-        var playlist = videoPlayerElement.viewModel;
+        var playlist = videoPlayerElement.ViewModel;
         var currentVideos = playlist.Videos;
 
         DisplayStyle expectedMainButtonPlay = mainButtonPlaying ? DisplayStyle.None : DisplayStyle.Flex;
